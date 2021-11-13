@@ -9,6 +9,8 @@ export default function Timer(){
 
     const {timer, setTimer} = useContext(GameContext);
     const {timesUp, setTimesUp} = useContext(GameContext);
+    const {qAndA, setQAndA} = useContext(GameContext);
+
 
     useEffect(()=>{
         if (timer === 0) {
@@ -18,8 +20,7 @@ export default function Timer(){
         const interval = setInterval(()=>{
             setTimer((prev)=> prev-1);
         },1000);
-
-        //Clear interval
+        
         return () => clearInterval(interval);
     })
     

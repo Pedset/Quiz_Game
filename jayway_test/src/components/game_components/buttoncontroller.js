@@ -6,6 +6,8 @@ export default function Buttons(){
 
     const {timer, setTimer} = useContext(GameContext);
     const {timesUp, setTimesUp} = useContext(GameContext);
+    const {qAndA, setQAndA} = useContext(GameContext);
+    const {questionNumber, setQuestionNumber} = useContext(GameContext);
 
     useEffect(()=>{
         if (timer === 0) {
@@ -15,9 +17,16 @@ export default function Buttons(){
     })
 
     const loadNextQuestion =() =>{
-        setTimer(15);
-        setTimesUp(false);
-        console.log("hello");
+        if(questionNumber < 10){
+                setTimer(15);
+                setTimesUp(false);
+                setQuestionNumber(questionNumber+1);
+                console.log(qAndA);
+                console.log("hello");
+        }else{
+            // change game state to finished (result)
+        }
+        
     }
 
     return (

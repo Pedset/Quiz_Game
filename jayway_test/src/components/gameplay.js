@@ -12,11 +12,12 @@ export default function Start(props){
     const [timesUp, setTimesUp] = useState(false);
     const [questionNumber, setQuestionNumber] = useState(0);
     const [answerLog, setAnswerLog] = useState([])
+    const {qAndA, setQAndA} = useContext(GameContext);
 
 
     return (
 <Fragment>
-  <GameContext.Provider value={{timer, setTimer, timesUp, setTimesUp}}>
+  <GameContext.Provider value={{timer, setTimer, timesUp, setTimesUp, qAndA, setQAndA, questionNumber, setQuestionNumber}}>
     <div className="Timer">
           <Timer />
     </div>

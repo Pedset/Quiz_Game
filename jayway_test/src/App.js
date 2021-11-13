@@ -28,12 +28,13 @@ function App() {
 useEffect(()=>{
 axios.get(fileURL)
 .then(res =>{
-  console.log(res);
-console.log(shuffle(res.data.qaa));
 
+let shuffledQuestions = shuffle(res.data.qaa);
 
-
-
+shuffledQuestions.forEach((element) =>{
+  setQAndA((qAndA) => ([...qAndA, element]))
+});
+  
 })
 .catch(err =>{
   console.log(err);
@@ -41,10 +42,6 @@ console.log(shuffle(res.data.qaa));
 
 },[]);
 
-const loadQuestions = () =>{
-   
-
- }
   function viewPage(){
     switch(gameState){
       case "start": {
@@ -68,12 +65,14 @@ const loadQuestions = () =>{
   }
 
   return (
+    <GameContext.Provider value={{qAndA, setQAndA}}>
     <div className="App">
      <h1>Quiz game</h1>
      <br></br>
      {viewPage()}
      
     </div>    
+    </GameContext.Provider>
   );
 }
 
