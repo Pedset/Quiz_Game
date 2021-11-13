@@ -12,7 +12,7 @@ function App() {
   const fileURL = "data.json";
   const [gameState, setGameState] = useState("menu");
   const [qAndA, setQAndA] = useState([]);
-
+  const [answerLog, setAnswerLog] = useState([]);
   
   function shuffle(sourceArray) {
     for (var i = 0; i < sourceArray.length - 1; i++) {
@@ -47,9 +47,11 @@ shuffledQuestions.forEach((element) =>{
       case "start": {
 
         return <Start/>;
+        break;
       }
-      case "Results": {
+      case "results": {
         return <Results/>;
+        break;
       }
       default: {
         return <Menu 
@@ -65,7 +67,7 @@ shuffledQuestions.forEach((element) =>{
   }
 
   return (
-    <GameContext.Provider value={{qAndA, setQAndA}}>
+    <GameContext.Provider value={{qAndA, setQAndA, answerLog, setAnswerLog, gameState, setGameState}}>
     <div className="App">
      <h1>Quiz game</h1>
      <br></br>

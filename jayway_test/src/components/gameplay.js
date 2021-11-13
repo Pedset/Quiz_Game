@@ -8,18 +8,17 @@ import { GameContext } from './game_components/global/contexts';
 
 export default function Start(props){
 
-    const [timer, setTimer] = useState(15);
-    const [timesUp, setTimesUp] = useState(false);
+    const [timer, setTimer] = useState(1500);
     const [questionNumber, setQuestionNumber] = useState(0);
-    const [answerLog, setAnswerLog] = useState([])
+    const {answerLog, setAnswerLog} = useContext(GameContext);
     const {qAndA, setQAndA} = useContext(GameContext);
-
+    const {gameState, setGameState} = useContext(GameContext);
 
     return (
 <Fragment>
-  <GameContext.Provider value={{timer, setTimer, timesUp, setTimesUp, qAndA, setQAndA, questionNumber, setQuestionNumber}}>
+  <GameContext.Provider value={{timer, setTimer, qAndA, setQAndA, questionNumber, setQuestionNumber, answerLog, setAnswerLog, gameState, setGameState}}>
     <div className="Timer">
-          <Timer />
+          <Timer/>
     </div>
     <div className="LifeLines">
           <LifeLines/>

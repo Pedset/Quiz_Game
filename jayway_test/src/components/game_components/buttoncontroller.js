@@ -5,9 +5,10 @@ import { GameContext } from './global/contexts';
 export default function Buttons(){
 
     const {timer, setTimer} = useContext(GameContext);
-    const {timesUp, setTimesUp} = useContext(GameContext);
     const {qAndA, setQAndA} = useContext(GameContext);
     const {questionNumber, setQuestionNumber} = useContext(GameContext);
+    const {gameState, setGameState} = useContext(GameContext);
+    const {answerLog, setAnswerLog} = useContext(GameContext);
 
     useEffect(()=>{
         if (timer === 0) {
@@ -17,14 +18,17 @@ export default function Buttons(){
     })
 
     const loadNextQuestion =() =>{
-        if(questionNumber < 10){
-                setTimer(15);
-                setTimesUp(false);
+        if(questionNumber < 9){
+                setTimer(1500);
                 setQuestionNumber(questionNumber+1);
-                console.log(qAndA);
-                console.log("hello");
+                let ansObj = {
+                    "questionNumber" : questionNumber,
+                    "answeredTime"   : (1500-timer)/100,
+                    "passed"           : null,     
+                }
+                setAnswerLog((answerLog) => ([...answerLog, ansObj]));
         }else{
-            // change game state to finished (result)
+            setGameState("results");
         }
         
     }
