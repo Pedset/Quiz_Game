@@ -19,14 +19,15 @@ export default function Buttons(){
 
     const loadNextQuestion =() =>{
         if(questionNumber < 9){
-                setTimer(1500);
-                setQuestionNumber(questionNumber+1);
                 let ansObj = {
                     "questionNumber" : questionNumber,
                     "answeredTime"   : (1500-timer)/100,
                     "passed"           : null,     
                 }
                 setAnswerLog((answerLog) => ([...answerLog, ansObj]));
+                setTimer(1500);
+                setQuestionNumber(questionNumber+1);
+                
         }else{
             setGameState("results");
         }
