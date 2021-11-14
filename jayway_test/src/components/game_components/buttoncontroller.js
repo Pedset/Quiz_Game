@@ -12,32 +12,34 @@ export default function Buttons(){
 
     useEffect(()=>{
         if (timer === 0) {
-            loadNextQuestion();
+            submitAnswer();
             return;
         }  
     })
+    
+    const submitAnswer = () =>{
+        let ansObj = {
+            "questionNumber" : questionNumber,
+            "answeredTime"   : (1500-timer)/100,
+            "passed"           : null,     
+        }
+        setAnswerLog((answerLog) => ([...answerLog, ansObj]));
+        loadNextQuestion();
+    }
 
     const loadNextQuestion =() =>{
         if(questionNumber < 9){
-                let ansObj = {
-                    "questionNumber" : questionNumber,
-                    "answeredTime"   : (1500-timer)/100,
-                    "passed"           : null,     
-                }
-                setAnswerLog((answerLog) => ([...answerLog, ansObj]));
                 setTimer(1500);
                 setQuestionNumber(questionNumber+1);
-                
         }else{
             setGameState("results");
         }
-        
     }
 
     return (
 <Fragment>
          <button>Quit game</button>
-         <button onClick={()=>loadNextQuestion()}>Next Question</button>
+         <button onClick={()=>submitAnswer()}>Next Question</button>
 </Fragment>
 
     )};
