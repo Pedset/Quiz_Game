@@ -7,12 +7,12 @@ export default function Results(){
 
     const {qAndA, setQAndA} = useContext(GameContext);
     const {answerLog, setAnswerLog} = useContext(GameContext);
-    const [fastestTime, setFastestTime] = useState({time: 15, question: 0 , img: null});
+    const [fastestTime, setFastestTime] = useState({time: 25, question: 0 , img: null});
     const [slowestTime, setSlowestTime] = useState({time: 0, question: 0 , img: null});
     const [totalUnanswered, setTotalUnanswered] = useState(0);
     const [totalCorrect, setTotalCorrect] = useState(0);
     const [totalWrong, setTotalWrong] = useState(0);
-    const [avgTime, setAvgTime] = useState(0);
+    const [avgTime, setAvgTime] = useState(null);
 
 
 
@@ -22,7 +22,7 @@ export default function Results(){
         let answerTimes = [];
         let totalWrong = 0;
         let totalCorrect = 0;
-        let fastestTime = {time: 15, question: 0 , img: null};
+        let fastestTime = {time: 25, question: 0 , img: null};
         let slowestTime = {time: 0, question: 0 , img: null};
        answerLog.forEach(element => {
            if(element.passed === null) totalUnanswered++;
@@ -36,13 +36,15 @@ export default function Results(){
             slowestTime = {time : element.answeredTime, question : qAndA[element.questionNumber].question , img : qAndA[element.questionNumber].img ? (qAndA[element.questionNumber].img) : null};
            }
        });
-       
        setTotalUnanswered(totalUnanswered);
        setTotalWrong(totalWrong);
        setTotalCorrect(totalCorrect);
        setFastestTime(fastestTime);
        setSlowestTime(slowestTime);
-       setAvgTime(answerTimes.reduce((a, b) => a + b) / answerTimes.length);
+       if (answerTimes !== undefined && answerTimes.length !== 0) {
+          setAvgTime(answerTimes.reduce((a, b) => a + b) / answerTimes.length); 
+       }
+       
     },[])
 
 
@@ -60,7 +62,9 @@ export default function Results(){
             <p>Total unanswered questions : {totalUnanswered}</p>
             <p>Total correct answers : {totalCorrect}</p>
             <p>Total wrong answers : {totalWrong}</p>
-            <p>Average time for each question answered: {parseFloat(avgTime).toFixed(2)} sec</p>
+            <p>Average time for each question answered: {avgTime ? parseFloat(avgTime).toFixed(2) : "Unavailable"} sec</p>
+            <br></br>
+            <button onClick={()=> window.location.reload()}>Menu</button>
        </Fragment>
     )
 }

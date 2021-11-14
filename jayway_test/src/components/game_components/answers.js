@@ -8,6 +8,12 @@ export default function Answers(){
     const {answerLog, setAnswerLog} = useContext(GameContext);
     const {gameState, setGameState} = useContext(GameContext);
 
+    const {timeLifeLine, setTimeLifeLine} = useContext(GameContext);
+    const {fiftyLifeLine, setFiftyLifeLine} = useContext(GameContext);
+    const {fiftyLifeLineDisable, setFiftyLifeLineDisable} = useContext(GameContext);
+    const {addTimeDisable, setAddTimeDisable} = useContext(GameContext);
+    const {roundTime, setRoundTime} = useContext(GameContext);
+
     const checkAns = (ans) =>{
         if(qAndA[questionNumber].solution === ans)  submitAnswer(true);
         else                                        submitAnswer(false);
@@ -16,7 +22,7 @@ export default function Answers(){
     const submitAnswer = (ans) =>{
         let ansObj = {
             "questionNumber" : questionNumber,
-            "answeredTime"   : (1500-timer)/100,
+            "answeredTime"   : (roundTime-timer)/100,
             "passed"           : ans,     
         }
         setAnswerLog((answerLog) => ([...answerLog, ansObj]));
@@ -25,6 +31,12 @@ export default function Answers(){
 
     const loadNextQuestion =() =>{
         if(questionNumber < 9){
+                if(timeLifeLine >0) setAddTimeDisable(false);
+                if(fiftyLifeLine >0) setFiftyLifeLineDisable(false);
+                document.querySelectorAll("#ansBtns").forEach((e)=>{
+                    e.disabled = false;
+                })
+                setRoundTime(1500);
                 setTimer(1500);
                 setQuestionNumber(questionNumber+1);
         }else{
@@ -32,7 +44,7 @@ export default function Answers(){
         }
     }
 
-    const listItems = qAndA[questionNumber].answers.map((answer) => <li key={answer.id}><button onClick={()=> checkAns(answer.id)} value={answer.id}>{answer.answer}</button></li>);
+    const listItems = qAndA[questionNumber].answers.map((answer) => <li key={answer.id}><button id="ansBtns" className={"ansBtn"+answer.id} onClick={()=> checkAns(answer.id)} value={answer.id}>{answer.answer}</button></li>);
     return (
     <Fragment>
                 <div>

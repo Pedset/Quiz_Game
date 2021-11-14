@@ -9,6 +9,11 @@ export default function Buttons(){
     const {questionNumber, setQuestionNumber} = useContext(GameContext);
     const {gameState, setGameState} = useContext(GameContext);
     const {answerLog, setAnswerLog} = useContext(GameContext);
+    const {timeLifeLine, setTimeLifeLine} = useContext(GameContext);
+    const {fiftyLifeLine, setFiftyLifeLine} = useContext(GameContext);
+    const {fiftyLifeLineDisable, setFiftyLifeLineDisable} = useContext(GameContext);
+    const {addTimeDisable, setAddTimeDisable} = useContext(GameContext);
+    const {roundTime, setRoundTime} = useContext(GameContext);
 
     useEffect(()=>{
         if (timer === 0) {
@@ -16,11 +21,11 @@ export default function Buttons(){
             return;
         }  
     })
-    
+
     const submitAnswer = () =>{
         let ansObj = {
             "questionNumber" : questionNumber,
-            "answeredTime"   : (1500-timer)/100,
+            "answeredTime"   : (roundTime-timer)/100,
             "passed"           : null,     
         }
         setAnswerLog((answerLog) => ([...answerLog, ansObj]));
@@ -29,6 +34,12 @@ export default function Buttons(){
 
     const loadNextQuestion =() =>{
         if(questionNumber < 9){
+                if(timeLifeLine >0) setAddTimeDisable(false);
+                if(fiftyLifeLine >0) setFiftyLifeLineDisable(false);
+                document.querySelectorAll("#ansBtns").forEach((e)=>{
+                    e.disabled = false;
+                })
+                setRoundTime(1500);
                 setTimer(1500);
                 setQuestionNumber(questionNumber+1);
         }else{
@@ -38,7 +49,7 @@ export default function Buttons(){
 
     return (
 <Fragment>
-         <button>Quit game</button>
+         <button onClick={()=> window.location.reload()}>Quit game</button>
          <button onClick={()=>submitAnswer()}>Next Question</button>
 </Fragment>
 

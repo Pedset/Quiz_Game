@@ -13,10 +13,17 @@ export default function Start(props){
     const {answerLog, setAnswerLog} = useContext(GameContext);
     const {qAndA, setQAndA} = useContext(GameContext);
     const {gameState, setGameState} = useContext(GameContext);
+    const [fiftyLifeLineDisable, setFiftyLifeLineDisable] = useState(false);
+    const [addTimeDisable, setAddTimeDisable] = useState(false);
+    const [timeLifeLine, setTimeLifeLine] = useState(2);
+    const [fiftyLifeLine, setFiftyLifeLine] = useState(2);
+    const [roundTime, setRoundTime] = useState(1500);
+
+
 
     return (
 <Fragment>
-  <GameContext.Provider value={{timer, setTimer, qAndA, setQAndA, questionNumber, setQuestionNumber, answerLog, setAnswerLog, gameState, setGameState}}>
+  <GameContext.Provider value={{timer, setTimer, qAndA, setQAndA, questionNumber, setQuestionNumber, answerLog, setAnswerLog, gameState, setGameState, fiftyLifeLineDisable, setFiftyLifeLineDisable, addTimeDisable, setAddTimeDisable, timeLifeLine, setTimeLifeLine, fiftyLifeLine, setFiftyLifeLine, roundTime, setRoundTime}}>
     <div className="Timer">
           <Timer/>
     </div>
