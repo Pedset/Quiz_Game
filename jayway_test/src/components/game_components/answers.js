@@ -3,15 +3,14 @@ import { GameContext } from './global/contexts';
 
 export default function Answers(){
     const {questionNumber, setQuestionNumber} = useContext(GameContext);
-    const {qAndA, setQAndA} = useContext(GameContext);
+    const {qAndA} = useContext(GameContext);
     const {timer, setTimer} = useContext(GameContext);
-    const {answerLog, setAnswerLog} = useContext(GameContext);
-    const {gameState, setGameState} = useContext(GameContext);
-
-    const {timeLifeLine, setTimeLifeLine} = useContext(GameContext);
-    const {fiftyLifeLine, setFiftyLifeLine} = useContext(GameContext);
-    const {fiftyLifeLineDisable, setFiftyLifeLineDisable} = useContext(GameContext);
-    const {addTimeDisable, setAddTimeDisable} = useContext(GameContext);
+    const { setAnswerLog} = useContext(GameContext);
+    const { setGameState} = useContext(GameContext);
+    const {timeLifeLine} = useContext(GameContext);
+    const {fiftyLifeLine} = useContext(GameContext);
+    const {setFiftyLifeLineDisable} = useContext(GameContext);
+    const {setAddTimeDisable} = useContext(GameContext);
     const {roundTime, setRoundTime} = useContext(GameContext);
 
     const checkAns = (ans) =>{
@@ -44,10 +43,10 @@ export default function Answers(){
         }
     }
 
-    const listItems = qAndA[questionNumber].answers.map((answer) => <li key={answer.id}><button id="ansBtns" className={"ansBtn"+answer.id} onClick={()=> checkAns(answer.id)} value={answer.id}>{answer.answer}</button></li>);
+    const listItems = qAndA[questionNumber].answers.map((answer) => <li key={answer.id}><button data-testid="ans_btn" id="ansBtns" className={"ansBtn"+answer.id} onClick={()=> checkAns(answer.id)} value={answer.id}>{answer.answer}</button></li>);
     return (
     <Fragment>
-                <div>
+                <div className="answers-container">
                     {listItems}
                 </div>
     </Fragment>

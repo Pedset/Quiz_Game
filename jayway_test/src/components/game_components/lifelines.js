@@ -1,45 +1,29 @@
-import React,{Fragment, useState, useContext, useEffect} from 'react';
+import React,{Fragment, useContext} from 'react';
 import { GameContext } from './global/contexts';
 
 
 export default function LifeLines(){
 
     const {timer, setTimer} = useContext(GameContext);
-    const {questionNumber, setQuestionNumber} = useContext(GameContext);
-    const {qAndA, setQAndA} = useContext(GameContext);
+    const {questionNumber} = useContext(GameContext);
+    const {qAndA} = useContext(GameContext);
     const {timeLifeLine, setTimeLifeLine} = useContext(GameContext);
     const {fiftyLifeLine, setFiftyLifeLine} = useContext(GameContext);
     const {fiftyLifeLineDisable, setFiftyLifeLineDisable} = useContext(GameContext);
     const {addTimeDisable, setAddTimeDisable} = useContext(GameContext);
-    const {roundTime, setRoundTime} = useContext(GameContext);
+    const {setRoundTime} = useContext(GameContext);
 
     function getRandomInt(max) {
         return Math.floor(Math.random() * max);
       }
 
-    useEffect(()=>{
-        if (timer === 0) {
-            if(timeLifeLine > 0) setAddTimeDisable(false);
-            if(fiftyLifeLine > 0) setFiftyLifeLineDisable(false);
-            document.querySelectorAll("#ansBtns").forEach((e)=>{
-                e.disabled = false;
-            })
-            setRoundTime(1500);
-            return;
-        }  
-    },[])
 
     const FiftyFifty = () => {
-        
-       
         if (fiftyLifeLine !== 0){
-
             let alternative1 = null;
             let alternative2 = null;
-
                 while (alternative1 === null || alternative2 === null || alternative1 === alternative2){
                     let index1 = getRandomInt(4)+1;
-
                     if(index1 !== qAndA[questionNumber].solution){
                         alternative1 = index1;
                     }
@@ -50,7 +34,6 @@ export default function LifeLines(){
                 }
             document.querySelector(".ansBtn"+ alternative1 ).disabled = true;
             document.querySelector(".ansBtn"+ alternative2 ).disabled = true;
-
             setFiftyLifeLineDisable(true);
             setFiftyLifeLine(fiftyLifeLine-1);
         }
@@ -69,7 +52,9 @@ export default function LifeLines(){
 
     return (
         <Fragment>
-                    <button disabled={fiftyLifeLineDisable} onClick={()=> FiftyFifty()}>50/50 ({fiftyLifeLine})</button>
-                    <button disabled={addTimeDisable} onClick={()=>addTime()}>+10 sec ({timeLifeLine})</button>
+                    <p>
+                    Lifelines : <button data-testid="5050_btn" disabled={fiftyLifeLineDisable} onClick={()=> FiftyFifty()}>50/50 ({fiftyLifeLine})</button>
+                    <button data-testid="addtime_btn" disabled={addTimeDisable} onClick={()=>addTime()}>+10 sec ({timeLifeLine})</button>
+                    </p>         
         </Fragment>
     )};

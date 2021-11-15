@@ -5,10 +5,10 @@ import { GameContext } from './game_components/global/contexts';
 
 export default function Results(){
 
-    const {qAndA, setQAndA} = useContext(GameContext);
-    const {answerLog, setAnswerLog} = useContext(GameContext);
-    const [fastestTime, setFastestTime] = useState({time: 25, question: 0 , img: null});
-    const [slowestTime, setSlowestTime] = useState({time: 0, question: 0 , img: null});
+    const {qAndA} = useContext(GameContext);
+    const {answerLog} = useContext(GameContext);
+    const [fastestTime, setFastestTime] = useState({time: 25, question: null , img: null});
+    const [slowestTime, setSlowestTime] = useState({time: 0, question: null , img: null});
     const [totalUnanswered, setTotalUnanswered] = useState(0);
     const [totalCorrect, setTotalCorrect] = useState(0);
     const [totalWrong, setTotalWrong] = useState(0);
@@ -17,7 +17,6 @@ export default function Results(){
 
 
     useEffect(()=>{
-       console.log(answerLog);
         let totalUnanswered = 0;
         let answerTimes = [];
         let totalWrong = 0;
@@ -36,11 +35,13 @@ export default function Results(){
             slowestTime = {time : element.answeredTime, question : qAndA[element.questionNumber].question , img : qAndA[element.questionNumber].img ? (qAndA[element.questionNumber].img) : null};
            }
        });
+
        setTotalUnanswered(totalUnanswered);
        setTotalWrong(totalWrong);
        setTotalCorrect(totalCorrect);
        setFastestTime(fastestTime);
        setSlowestTime(slowestTime);
+       
        if (answerTimes !== undefined && answerTimes.length !== 0) {
           setAvgTime(answerTimes.reduce((a, b) => a + b) / answerTimes.length); 
        }
@@ -50,21 +51,29 @@ export default function Results(){
 
     return (
        <Fragment>
-           <p>Statistics</p>
-           <p>Your fastest question answered was {fastestTime.time} sec for the question: </p>
-           <p>{fastestTime.question}</p>
-           <p>{fastestTime.img ? (<img src={fastestTime.img}></img>) : null }</p>
+           <h3>Statistics</h3>
+
+           {fastestTime.question ? (<p>Your fastest question answered was {fastestTime.time} sec for the question: </p>) : null}
+
+           <div className="question-container">
+           {fastestTime.question ? (<p>{fastestTime.question}</p>) : null}
+           {fastestTime.question ? (<p>{fastestTime.img ? (<img alt="question_img" src={fastestTime.img}></img>) : null }</p>) : null}
+           </div>
+
+           {slowestTime.question ? (<p>Your fastest question answered was {slowestTime.time} sec for the question: </p>) : null}
+
+           <div className="question-container">
+           {slowestTime.question ? (<p>{slowestTime.question}</p>) : null}
+           {slowestTime.question ? (<p>{slowestTime.img ? (<img alt="question_img" src={slowestTime.img}></img>) : null }</p>): null}
+           </div>
+
            <br></br>
-           <p>Your slowest question answered was {slowestTime.time} sec for the question: </p>
-           <p>{slowestTime.question}</p>
-           <p>{slowestTime.img ? (<img src={slowestTime.img}></img>) : null }</p>
+           <p>Total unanswered questions : {totalUnanswered}</p>
+           <p>Total correct answers : {totalCorrect}</p>
+           <p>Total wrong answers : {totalWrong}</p>
+           <p>Average time for each question answered: {avgTime ? parseFloat(avgTime).toFixed(2) : "Unavailable"} sec</p>
            <br></br>
-            <p>Total unanswered questions : {totalUnanswered}</p>
-            <p>Total correct answers : {totalCorrect}</p>
-            <p>Total wrong answers : {totalWrong}</p>
-            <p>Average time for each question answered: {avgTime ? parseFloat(avgTime).toFixed(2) : "Unavailable"} sec</p>
-            <br></br>
-            <button onClick={()=> window.location.reload()}>Menu</button>
+           <button onClick={()=> window.location.reload()}>Menu</button>
        </Fragment>
     )
 }

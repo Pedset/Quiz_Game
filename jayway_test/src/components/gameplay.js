@@ -15,11 +15,9 @@ export default function Start(props){
     const {gameState, setGameState} = useContext(GameContext);
     const [fiftyLifeLineDisable, setFiftyLifeLineDisable] = useState(false);
     const [addTimeDisable, setAddTimeDisable] = useState(false);
-    const [timeLifeLine, setTimeLifeLine] = useState(2);
-    const [fiftyLifeLine, setFiftyLifeLine] = useState(2);
+    const [timeLifeLine, setTimeLifeLine] = useState(1);
+    const [fiftyLifeLine, setFiftyLifeLine] = useState(1);
     const [roundTime, setRoundTime] = useState(1500);
-
-
 
     return (
 <Fragment>

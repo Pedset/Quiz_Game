@@ -5,14 +5,13 @@ import { GameContext } from './global/contexts';
 export default function Buttons(){
 
     const {timer, setTimer} = useContext(GameContext);
-    const {qAndA, setQAndA} = useContext(GameContext);
     const {questionNumber, setQuestionNumber} = useContext(GameContext);
-    const {gameState, setGameState} = useContext(GameContext);
-    const {answerLog, setAnswerLog} = useContext(GameContext);
-    const {timeLifeLine, setTimeLifeLine} = useContext(GameContext);
-    const {fiftyLifeLine, setFiftyLifeLine} = useContext(GameContext);
-    const {fiftyLifeLineDisable, setFiftyLifeLineDisable} = useContext(GameContext);
-    const {addTimeDisable, setAddTimeDisable} = useContext(GameContext);
+    const {setGameState} = useContext(GameContext);
+    const {setAnswerLog} = useContext(GameContext);
+    const {timeLifeLine} = useContext(GameContext);
+    const {fiftyLifeLine} = useContext(GameContext);
+    const {setFiftyLifeLineDisable} = useContext(GameContext);
+    const {setAddTimeDisable} = useContext(GameContext);
     const {roundTime, setRoundTime} = useContext(GameContext);
 
     useEffect(()=>{
@@ -49,8 +48,9 @@ export default function Buttons(){
 
     return (
 <Fragment>
-         <button onClick={()=> window.location.reload()}>Quit game</button>
-         <button onClick={()=>submitAnswer()}>Next Question</button>
+         
+         <button data-testid="quit_btn" onClick={()=> window.location.reload()}>Quit game</button>
+         <button data-testid="submit_btn" onClick={()=>submitAnswer()}>Next Question</button>
 </Fragment>
 
     )};
