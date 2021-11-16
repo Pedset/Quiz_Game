@@ -1,3 +1,4 @@
+Open terminal in jayway_test folder
 1# npm install
 
 for testing the application
