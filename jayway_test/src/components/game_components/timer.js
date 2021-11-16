@@ -1,16 +1,10 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, Fragment} from 'react';
 import { GameContext } from './global/contexts';
 
-
-
 export default function Timer(){
-
     const {timer, setTimer} = useContext(GameContext);
-    
     useEffect(()=>{
-        if (timer === 0) {
-             return;
-        }  
+        if (timer === 0) return;
         const interval = setInterval(()=>{
             setTimer((prev)=> prev-1);
         },10);
@@ -18,5 +12,8 @@ export default function Timer(){
     })
     
     return (
-        <p data-testid="timer">Timer : {Math.floor(timer/100)}</p>
+        <Fragment>
+           <p className="timer" data-testid="timer">Timer : {Math.floor(timer/100)}</p> 
+        </Fragment>
+        
     )};

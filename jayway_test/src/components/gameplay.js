@@ -22,6 +22,7 @@ export default function Start(props){
     return (
 <Fragment>
   <GameContext.Provider value={{timer, setTimer, qAndA, setQAndA, questionNumber, setQuestionNumber, answerLog, setAnswerLog, gameState, setGameState, fiftyLifeLineDisable, setFiftyLifeLineDisable, addTimeDisable, setAddTimeDisable, timeLifeLine, setTimeLifeLine, fiftyLifeLine, setFiftyLifeLine, roundTime, setRoundTime}}>
+    
     <div className="Timer">
           <Timer/>
     </div>

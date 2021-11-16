@@ -15,7 +15,7 @@ export default function LifeLines(){
 
     function getRandomInt(max) {
         return Math.floor(Math.random() * max);
-      }
+    }
 
 
     const FiftyFifty = () => {
@@ -52,9 +52,10 @@ export default function LifeLines(){
 
     return (
         <Fragment>
-                    <p>
-                    Lifelines : <button data-testid="5050_btn" disabled={fiftyLifeLineDisable} onClick={()=> FiftyFifty()}>50/50 ({fiftyLifeLine})</button>
-                    <button data-testid="addtime_btn" disabled={addTimeDisable} onClick={()=>addTime()}>+10 sec ({timeLifeLine})</button>
-                    </p>         
+            <hr></hr>
+            <p>Lifelines</p>
+            <button className="5050_btn" disabled={fiftyLifeLineDisable} onClick={()=> FiftyFifty()}>50/50 ({fiftyLifeLine})</button>
+            <button className="addtime_btn" disabled={addTimeDisable} onClick={()=>addTime()}>+10 sec ({timeLifeLine})</button>
+            <hr></hr>  
         </Fragment>
     )};

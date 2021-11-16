@@ -272,6 +272,106 @@
             }
         ],
         "solution" : 4
+    },
+    {
+        "question" : "Whats the earths diameter?",
+        "img": null,
+        "type" : "text",
+        "id" : 12,
+        "answers" : [
+            {
+                "answer" : "11502 km",
+                "id" : 1
+            },
+            {
+                "answer" : "12742 km",
+                "id" : 2
+            },
+            {
+                "answer" : "13529 km",
+                "id" : 3
+            },
+            {
+                "answer" : "14574 km",
+                "id" : 4
+            }
+        ],
+        "solution" : 2
+    },
+    {
+        "question" : "What's the biggest animal in the world?",
+        "img": null,
+        "type" : "text",
+        "id" : 13,
+        "answers" : [
+            {
+                "answer" : "Elephant",
+                "id" : 1
+            },
+            {
+                "answer" : "Giant octopus",
+                "id" : 2
+            },
+            {
+                "answer" : "Blue whale",
+                "id" : 3
+            },
+            {
+                "answer" : "Colossal squid",
+                "id" : 4
+            }
+        ],
+        "solution" : 3
+    },
+    {
+        "question" : "Which country is brie cheese originally from?",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/8/88/Brie_01.jpg",
+        "type" : "img",
+        "id" : 14,
+        "answers" : [
+            {
+                "answer" : "Italy",
+                "id" : 1
+            },
+            {
+                "answer" : "Germany",
+                "id" : 2
+            },
+            {
+                "answer" : "Irland",
+                "id" : 3
+            },
+            {
+                "answer" : "France",
+                "id" : 4
+            }
+        ],
+        "solution" : 4
+    },
+    {
+        "question" : "Who painted the Mona Lisa?",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/MonaLisa_sfumato.jpeg/250px-MonaLisa_sfumato.jpeg",
+        "type" : "img",
+        "id" : 15,
+        "answers" : [
+            {
+                "answer" : "Claude Monet",
+                "id" : 1
+            },
+            {
+                "answer" : "Pablo Picasso",
+                "id" : 2
+            },
+            {
+                "answer" : "Vincent van",
+                "id" : 3
+            },
+            {
+                "answer" : "Leonardo da Vinci",
+                "id" : 4
+            }
+        ],
+        "solution" : 4
     }]
 }
     

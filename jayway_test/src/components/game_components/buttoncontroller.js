@@ -41,16 +41,12 @@ export default function Buttons(){
                 setRoundTime(1500);
                 setTimer(1500);
                 setQuestionNumber(questionNumber+1);
-        }else{
-            setGameState("results");
-        }
+        }else setGameState("results");
     }
 
     return (
-<Fragment>
-         
-         <button data-testid="quit_btn" onClick={()=> window.location.reload()}>Quit game</button>
-         <button data-testid="submit_btn" onClick={()=>submitAnswer()}>Next Question</button>
-</Fragment>
-
+        <Fragment>
+                <button className="quit_btn" onClick={()=> window.location.reload()}>Quit game</button>
+                <button className="submit_btn" onClick={()=>submitAnswer()}>Next Question</button>
+        </Fragment>
     )};
